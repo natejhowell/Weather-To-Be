@@ -11,7 +11,7 @@
         <!--Home-->
         <scene sceneID="gtl-Qe-fVi">
             <objects>
-                <viewController id="Wpi-XK-NVi" customClass="HomeViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Home" id="Wpi-XK-NVi" customClass="HomeViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zo7-Ln-e8r">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,6 +72,14 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house" id="4dS-34-aZu"/>
+                    <connections>
+                        <outlet property="cityLabel" destination="RAd-fG-Qyq" id="p2W-tH-hA7"/>
+                        <outlet property="conditionImageView" destination="Cou-mv-UWE" id="OYn-5w-pPu"/>
+                        <outlet property="conditionLabel" destination="Utm-aX-1TD" id="cGB-gD-XRq"/>
+                        <outlet property="greetingLabel" destination="Tsc-08-OlH" id="ZQu-be-3Yd"/>
+                        <outlet property="highLowLabel" destination="SbP-jz-CSk" id="igH-HC-3KZ"/>
+                        <outlet property="temperatureLabel" destination="Jwe-ud-gwY" id="I2U-lB-yYh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OwX-53-0zf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -80,13 +88,13 @@
         <!--Favorites-->
         <scene sceneID="cPa-s4-gdL">
             <objects>
-                <tableViewController id="pUF-SO-4OY" sceneMemberID="viewController">
+                <tableViewController title="Favorites" id="pUF-SO-4OY" customClass="FavoritesViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Nf-p6-HFK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="HvX-eh-M4e">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FavoritesCell" id="HvX-eh-M4e">
                                 <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="HvX-eh-M4e" id="ucx-zo-tVI">
@@ -106,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="2529" y="488"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Search-->
         <scene sceneID="8Cn-Uh-DdD">
             <objects>
-                <tableViewController id="LG8-J0-HHR" sceneMemberID="viewController">
+                <tableViewController title="Search" id="LG8-J0-HHR" customClass="SearchViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="53E-e5-OHq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -120,7 +128,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="PeG-WV-mkl">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SearchCell" id="PeG-WV-mkl">
                                 <rect key="frame" x="0.0" y="68.5" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PeG-WV-mkl" id="xtl-bw-KPl">
@@ -138,7 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rpm-v7-oXO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3178" y="90"/>
+            <point key="canvasLocation" x="3180" y="115"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iE7-QH-lOU">

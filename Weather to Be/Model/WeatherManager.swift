@@ -29,11 +29,9 @@ struct WeatherManager {
     }
     
     func performRequest(with urlString: String) {
-        //1. Create a URL
+        
         if let url = URL(string: urlString){
-            //2. Create a URLSession
             let session = URLSession(configuration: .default)
-            //3. Give the session a task
             let task = session.dataTask(with: url) { (data, response, error) in
                 if error != nil {
                     self.delegate?.didFailWithError(error: error!)
@@ -46,7 +44,6 @@ struct WeatherManager {
                     }
                 }
             }
-            //4. Start the task
             task.resume()
         }
     }
@@ -59,8 +56,8 @@ struct WeatherManager {
             let description = decodedData.weather[0].description
             let temp = decodedData.main.temp
             let name = decodedData.name
-            let high = decodedData.main.high
-            let low = decodedData.main.low
+            let high = decodedData.main.temp_max
+            let low = decodedData.main.temp_min
             
             let weather = WeatherModel(conditionId: id, cityName: name, weatherDiscription: description, temperature: temp, highTemperature: high, lowTemperature: low)
             return weather

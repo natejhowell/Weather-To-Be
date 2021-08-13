@@ -14,7 +14,6 @@ struct WeatherModel {
     let temperature: Double
     let highTemperature: Double
     let lowTemperature: Double
-    let greetingId: Int
     
     var temperatureString: String {
         return String(format: "%.1f", temperature)
@@ -38,17 +37,6 @@ struct WeatherModel {
                     return "cloud.bolt"
                 default:
                     return "cloud"
-        }
-    }
-    
-    var greeting: String {
-        switch greetingId {
-        case 1628804669:
-            return "Good Afternoon!"
-        case 1628804670:
-            return "Good Evening!"
-        default:
-            return "Hello there!"
         }
     }
 

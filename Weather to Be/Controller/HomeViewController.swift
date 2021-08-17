@@ -20,18 +20,6 @@ class HomeViewController: UIViewController {
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
     
-//    let hour = Calendar.current.component(.hour, from: Date())
-//
-//    switch hour {
-//        case 1..<10:
-//            greetingLabel.text = "Good Morning!"
-//        case 10..<4:
-//            greetingLabel.text = "Good Afternoon!"
-//        default:
-//            greetingLabel.text = "Hello there!"
-//        }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

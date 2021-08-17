@@ -14,19 +14,21 @@ protocol WeatherManagerDelegate {
 }
 
 struct WeatherManager {
-    let weatherURL = "https://api.openweathermap.org/data/2.5/weather?appid=b16248af22ebd2db62aaa8f46a1dd421&units=imperial"
     
     var delegate: WeatherManagerDelegate?
+        func fetchWeather(cityName: String) {
+            let apiKey = "" // The key is left empty intentionally (1 of 2), enter your own API key here or reach out to project owner
+            let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
+            let urlString = "\(weatherURL)&q=\(cityName)"
+            performRequest(with: urlString)
+        }
     
-    func fetchWeather(cityName: String) {
-        let urlString = "\(weatherURL)&q=\(cityName)"
-        performRequest(with: urlString)
-    }
-    
-    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-        performRequest(with: urlString)
-    }
+        func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+            let apiKey = "" // The key is left empty intentionally (2 of 2), enter your own API key here or reach out to project owner
+            let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
+            let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+            performRequest(with: urlString)
+        }
     
     func performRequest(with urlString: String) {
         

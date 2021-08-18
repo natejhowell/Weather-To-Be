@@ -21,12 +21,88 @@ class HomeViewController: UIViewController {
     
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
-    var dailyForecast: [DailyForecast] = [
-        DailyForecast(time: "12pm", temp: "80")
+    var forecast: [Forecast] = [
+        Forecast(time: "12pm", temp: "80")
     ]
-    var weeklyForecast: [WeeklyForecast] = [
-        WeeklyForecast(day: "Sunday", highLow: "H: 87 | L: 75")
-    ]
+    
+    //var weekday = Calendar.current.component(.weekday, from: Date())
+    
+    func weekDay(day: Int) -> String {
+        
+        switch day {
+        case 1, 8:
+            return "Sunday"
+        case 2, 9:
+            return "Monday"
+        case 3, 10:
+            return "Tuesday"
+        case 4, 11:
+            return "Wednesday"
+        case 5, 12:
+            return "Thursday"
+        case 6:
+            return "Friday"
+        case 7:
+            return "Saturday"
+        default:
+            return "Nada"
+        }
+    }
+    
+    func hours(hour: Int) -> String {
+        switch hour {
+        case 1:
+            return "1am"
+        case 2:
+            return "2am"
+        case 3:
+            return "3am"
+        case 4:
+            return "4am"
+        case 5:
+            return "5am"
+        case 6:
+            return "6am"
+        case 7:
+            return "7am"
+        case 8:
+            return "8am"
+        case 9:
+            return "9am"
+        case 10:
+            return "10am"
+        case 11:
+            return "11am"
+        case 12:
+            return "12pm"
+        case 13:
+            return "1pm"
+        case 14:
+            return "2pm"
+        case 15:
+            return "3pm"
+        case 16:
+            return "4pm"
+        case 17:
+            return "5pm"
+        case 18:
+            return "6pm"
+        case 19:
+            return "7pm"
+        case 20:
+            return "8pm"
+        case 21:
+            return "9pm"
+        case 22:
+            return "10pm"
+        case 23:
+            return "11pm"
+        case 24:
+            return "12am"
+        default:
+            return "Nada"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,23 +116,23 @@ class HomeViewController: UIViewController {
         
         self.forecastTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         forecastTableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
-    
+        
         weatherManager.delegate = self
-
+        
         // Set greeting based on time of day
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
-            case 1..<10:
-                greetingLabel.text = "Good Morning!"
-            case 10..<16:
-                greetingLabel.text = "Good Afternoon!"
-            case 16..<24:
-                greetingLabel.text = "Good Night!"
-            default:
-                greetingLabel.text = "Hello there!"
-            }
+        case 1..<10:
+            greetingLabel.text = "Good Morning!"
+        case 10..<16:
+            greetingLabel.text = "Good Afternoon!"
+        case 16..<24:
+            greetingLabel.text = "Good Night!"
+        default:
+            greetingLabel.text = "Hello there!"
+        }
     }
-
+    
 }
 
 extension HomeViewController: WeatherManagerDelegate {
@@ -78,7 +154,7 @@ extension HomeViewController: WeatherManagerDelegate {
 //MARK: - CLLocationManagerDelegate
 
 extension HomeViewController: CLLocationManagerDelegate {
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             locationManager.requestLocation()
@@ -93,6 +169,7 @@ extension HomeViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
+//MARK: - HomeViewController Forecast Tableview
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -101,6 +178,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell") as! ForecastCell
+        let weekday = Calendar.current.component(.weekday, from: Date())
+        let time = Calendar.current.component(.hour, from: Date())
         if indexPath.row == 0 {
             let boldText = "Filter:"
             let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
@@ -110,23 +189,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.forecastTemp.text = ""
         }
         else if indexPath.row == 1 {
-            cell.forecastTime.text = "1pm"
+            cell.forecastTime.text = "\(hours(hour: time + 1))"
             cell.forecastTemp.text = "82*"
         }
         else if indexPath.row == 2 {
-            cell.forecastTime.text = "2pm"
+            cell.forecastTime.text = "\(hours(hour: time + 2))"
             cell.forecastTemp.text = "84*"
         }
         else if indexPath.row == 3 {
-            cell.forecastTime.text = "3pm"
+            cell.forecastTime.text = "\(hours(hour: time + 3))"
             cell.forecastTemp.text = "86*"
         }
         else if indexPath.row == 4 {
-            cell.forecastTime.text = "4pm"
+            cell.forecastTime.text = "\(hours(hour: time + 4))"
             cell.forecastTemp.text = "86*"
         }
         else if indexPath.row == 5 {
-            cell.forecastTime.text = "5pm"
+            cell.forecastTime.text = "\(hours(hour: time + 5))"
             cell.forecastTemp.text = "84*"
         }
         else if indexPath.row == 6 {
@@ -138,23 +217,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.forecastTemp.text = ""
         }
         else if indexPath.row == 7 {
-            cell.forecastTime.text = "Sunday"
+            cell.forecastTime.text = "\(weekDay(day: weekday + 1))"
             cell.forecastTemp.text = "H: 87 | L: 75"
         }
         else if indexPath.row == 8 {
-            cell.forecastTime.text = "Monday"
+            cell.forecastTime.text = "\(weekDay(day: weekday + 2))"
             cell.forecastTemp.text = "H: 89 | L: 77"
         }
         else if indexPath.row == 9 {
-            cell.forecastTime.text = "Tuesday"
+            cell.forecastTime.text = "\(weekDay(day: weekday + 3))"
             cell.forecastTemp.text = "H: 91 | L: 79"
         }
         else if indexPath.row == 10 {
-            cell.forecastTime.text = "Wednesday"
+            cell.forecastTime.text = "\(weekDay(day: weekday + 4))"
             cell.forecastTemp.text = "H: 89 | L: 77"
         }
         else if indexPath.row == 11 {
-            cell.forecastTime.text = "Thursday"
+            cell.forecastTime.text = "\(weekDay(day: weekday + 5))"
             cell.forecastTemp.text = "H: 86 | L: 74"
         }
         else {

@@ -7,12 +7,8 @@
 
 import Foundation
 
-struct DailyForecast {
+struct Forecast {
     let time: String
     let temp: String
 }
 
-struct WeeklyForecast {
-    let day: String
-    let highLow: String
-}

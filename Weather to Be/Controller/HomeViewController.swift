@@ -17,8 +17,16 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var highLowLabel: UILabel!
     
+    @IBOutlet weak var forecastTableView: UITableView!
+    
     var weatherManager = WeatherManager()
     let locationManager = CLLocationManager()
+    var dailyForecast: [DailyForecast] = [
+        DailyForecast(time: "12pm", temp: "80")
+    ]
+    var weeklyForecast: [WeeklyForecast] = [
+        WeeklyForecast(day: "Sunday", highLow: "H: 87 | L: 75")
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +34,12 @@ class HomeViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        
+        forecastTableView.delegate = self
+        forecastTableView.dataSource = self
+        
+        self.forecastTableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        forecastTableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
     
         weatherManager.delegate = self
 
@@ -52,7 +66,7 @@ extension HomeViewController: WeatherManagerDelegate {
             self.conditionImageView.image = UIImage(systemName: weather.conditionName)
             self.conditionLabel.text = weather.weatherDiscription
             self.cityLabel.text = weather.cityName
-            self.highLowLabel.text = "H:\(weather.highTemperature) | L: \(weather.lowTemperature)"
+            self.highLowLabel.text = "H: \(weather.highTemperature) | L: \(weather.lowTemperature)"
         }
     }
     
@@ -77,5 +91,68 @@ extension HomeViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 12
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell") as! ForecastCell
+        if indexPath.row == 0 {
+            cell.forecastTime.text = "Today's Forecast"
+            cell.forecastTemp.text = ""
+        }
+        else if indexPath.row == 1 {
+            cell.forecastTime.text = "1pm"
+            cell.forecastTemp.text = "82*"
+        }
+        else if indexPath.row == 2 {
+            cell.forecastTime.text = "2pm"
+            cell.forecastTemp.text = "84*"
+        }
+        else if indexPath.row == 3 {
+            cell.forecastTime.text = "3pm"
+            cell.forecastTemp.text = "86*"
+        }
+        else if indexPath.row == 4 {
+            cell.forecastTime.text = "4pm"
+            cell.forecastTemp.text = "86*"
+        }
+        else if indexPath.row == 5 {
+            cell.forecastTime.text = "5pm"
+            cell.forecastTemp.text = "84*"
+        }
+        else if indexPath.row == 6 {
+            cell.forecastTime.text = "This Week's Forecast"
+            cell.forecastTemp.text = ""
+        }
+        else if indexPath.row == 7 {
+            cell.forecastTime.text = "Sunday"
+            cell.forecastTemp.text = "H: 87 | L: 75"
+        }
+        else if indexPath.row == 8 {
+            cell.forecastTime.text = "Monday"
+            cell.forecastTemp.text = "H: 89 | L: 77"
+        }
+        else if indexPath.row == 9 {
+            cell.forecastTime.text = "Tuesday"
+            cell.forecastTemp.text = "H: 91 | L: 79"
+        }
+        else if indexPath.row == 10 {
+            cell.forecastTime.text = "Wednesday"
+            cell.forecastTemp.text = "H: 89 | L: 77"
+        }
+        else if indexPath.row == 11 {
+            cell.forecastTime.text = "Thursday"
+            cell.forecastTemp.text = "H: 86 | L: 74"
+        }
+        else {
+            print("oops")
+        }
+        
+        return cell
     }
 }

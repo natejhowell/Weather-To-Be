@@ -45,16 +45,16 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-mv-UWE">
-                                <rect key="frame" x="125" y="138" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="H: 87* | L: 75*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbP-jz-CSk" userLabel="High Low Label">
                                 <rect key="frame" x="151" y="387" width="107" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-mv-UWE">
+                                <rect key="frame" x="129" y="138" width="150" height="150"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="94k-8j-Lex"/>
                         <color key="backgroundColor" systemColor="systemTealColor"/>
@@ -76,6 +76,7 @@
                         <outlet property="cityLabel" destination="RAd-fG-Qyq" id="p2W-tH-hA7"/>
                         <outlet property="conditionImageView" destination="Cou-mv-UWE" id="OYn-5w-pPu"/>
                         <outlet property="conditionLabel" destination="Utm-aX-1TD" id="cGB-gD-XRq"/>
+                        <outlet property="forecastTableView" destination="D4k-3e-GU3" id="EF3-ma-wCH"/>
                         <outlet property="greetingLabel" destination="Tsc-08-OlH" id="ZQu-be-3Yd"/>
                         <outlet property="highLowLabel" destination="SbP-jz-CSk" id="igH-HC-3KZ"/>
                         <outlet property="temperatureLabel" destination="Jwe-ud-gwY" id="I2U-lB-yYh"/>
@@ -155,7 +156,6 @@
         <!--Navigation Controller-->
         <scene sceneID="iE7-QH-lOU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J5F-Nz-rd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="WyL-jW-R6T" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="SAh-sf-pUR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Msb-ov-Eih">
@@ -166,6 +166,7 @@
                         <segue destination="pUF-SO-4OY" kind="relationship" relationship="rootViewController" id="vm1-Zd-ybn"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="J5F-Nz-rd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1639" y="488"/>
         </scene>

@@ -102,6 +102,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell") as! ForecastCell
         if indexPath.row == 0 {
+            let boldText = "Filter:"
+            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
+            let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+            cell.forecastTime.attributedText = attributedString
             cell.forecastTime.text = "Today's Forecast"
             cell.forecastTemp.text = ""
         }
@@ -126,6 +130,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             cell.forecastTemp.text = "84*"
         }
         else if indexPath.row == 6 {
+            let boldText = "Filter:"
+            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
+            let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
+            cell.forecastTime.attributedText = attributedString
             cell.forecastTime.text = "This Week's Forecast"
             cell.forecastTemp.text = ""
         }

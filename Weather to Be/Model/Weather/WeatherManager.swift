@@ -30,22 +30,7 @@ struct WeatherManager {
             performRequest(with: urlString)
         }
     
-        func fetchWeatherForForecast(cityName: String) {
-            let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally (1 of 2), enter your own API key here or reach out to project owner
-            let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?appid=\(apiKey)"
-            let urlString = "\(weatherURL)&q=\(cityName)"
-            performRequest(with: urlString)
-        }
-
-        func fetchWeatherForForecast(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-            let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally (2 of 2), enter your own API key here or reach out to project owner
-            let weatherURL = "https://api.openweathermap.org/data/2.5/onecall?appid=\(apiKey)"
-            let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-            performRequest(with: urlString)
-        }
-    
     func performRequest(with urlString: String) {
-        
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in

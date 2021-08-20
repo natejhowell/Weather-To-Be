@@ -20,15 +20,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var forecastTableView: UITableView!
     
     var weatherManager = WeatherManager()
+    var forecastManager = ForecastManager()
     let locationManager = CLLocationManager()
-    var forecast: [Forecast] = [
-        Forecast(time: "12pm", temp: "80")
-    ]
-    
-    //var weekday = Calendar.current.component(.weekday, from: Date())
     
     func weekDay(day: Int) -> String {
-        
         switch day {
         case 1, 8:
             return "Sunday"
@@ -118,6 +113,7 @@ class HomeViewController: UIViewController {
         forecastTableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
         weatherManager.delegate = self
+        forecastManager.delegate = self
         
         // Set greeting based on time of day
         let hour = Calendar.current.component(.hour, from: Date())
@@ -132,7 +128,6 @@ class HomeViewController: UIViewController {
             greetingLabel.text = "Hello there!"
         }
     }
-    
 }
 
 extension HomeViewController: WeatherManagerDelegate {
@@ -171,7 +166,18 @@ extension HomeViewController: CLLocationManagerDelegate {
 }
 //MARK: - HomeViewController Forecast Tableview
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource, ForecastManagerDelegate {
+    func didUpdateForecast(_ forecastManager: ForecastManager, forecast: ForecastModel) {
+        DispatchQueue.main.async {
+//            self.forecastTableView.indexPath(for: ForecastCell)
+       //     self.temperatureLabel.text = forecast.currentTemp
+//        self.conditionLabel.text = weather.weatherDiscription
+//        self.cityLabel.text = weather.cityName
+//        self.highLowLabel.text = "H: \(weather.highTemperature) | L: \(weather.lowTemperature)"
+            }
+        }
+    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 12
     }
@@ -190,7 +196,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = "82*"
+            cell.forecastTemp.text = ""
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"

@@ -10,4 +10,8 @@ import Foundation
 struct ForecastModel {
     let currentTime: Int
     let currentTemp: Double
+    
+    var temperatureString: String {
+        return String(format: "%.1f", currentTemp)
+    }
 }

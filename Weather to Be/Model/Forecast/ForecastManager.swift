@@ -9,21 +9,14 @@ import Foundation
 import CoreLocation
 
 protocol ForecastManagerDelegate {
-    func didUpdateForecast(_ forecastManager: ForecastManager, forecast: ForecastModel)
+    func didGetToday(_ forecastManager: ForecastManager, forecast: ForecastModel)
+    func didGetWeek(_ forecastManager: ForecastManager, forecast: ForecastModel)
     func didFailWithError(error: Error)
 }
 
 struct ForecastManager {
     
     var delegate: ForecastManagerDelegate?
-    
-    func fetchWeatherForForecast(cityName: String) {
-        let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally (1 of 2), enter your own API key here or reach out to project owner
-        let forecastURL = "https://api.openweathermap.org/data/2.5/onecall?appid=\(apiKey)"
-        let urlString = "\(forecastURL)&q=\(cityName)"
-        performRequestForForecast(with: urlString)
-    }
-
     func fetchWeatherForForecast(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
         let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally (2 of 2), enter your own API key here or reach out to project owner
         let forecastURL = "https://api.openweathermap.org/data/2.5/onecall?appid=\(apiKey)"
@@ -42,7 +35,7 @@ struct ForecastManager {
                 
                 if let safeData = data {
                     if let forecast = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateForecast(self, forecast: forecast)
+                        self.delegate?.didGetToday(self, forecast: forecast)
                     }
                 }
             }

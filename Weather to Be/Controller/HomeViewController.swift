@@ -23,6 +23,8 @@ class HomeViewController: UIViewController {
     var forecastManager = ForecastManager()
     let locationManager = CLLocationManager()
     
+//    var todayForecast = ForecastModel(currentTime: <#T##Int#>, currentTemp: <#T##Double#>)
+  
     func weekDay(day: Int) -> String {
         switch day {
         case 1, 8:
@@ -113,7 +115,7 @@ class HomeViewController: UIViewController {
         forecastTableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
         weatherManager.delegate = self
-        forecastManager.delegate = self
+        //forecastManager.delegate = self
         
         // Set greeting based on time of day
         let hour = Calendar.current.component(.hour, from: Date())
@@ -131,13 +133,13 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel) {
+    func didGetCurrent(_ weatherManager: WeatherManager, weather: WeatherModel) {
         DispatchQueue.main.async {
-            self.temperatureLabel.text = weather.temperatureString
+            self.temperatureLabel.text = "\(weather.temperatureString)°"
             self.conditionImageView.image = UIImage(systemName: weather.conditionName)
             self.conditionLabel.text = weather.weatherDiscription
             self.cityLabel.text = weather.cityName
-            self.highLowLabel.text = "H: \(weather.highTemperature) | L: \(weather.lowTemperature)"
+            self.highLowLabel.text = "H: \(weather.highTemperatureString)° | L: \(weather.lowTemperatureString)°"
         }
     }
     
@@ -145,7 +147,19 @@ extension HomeViewController: WeatherManagerDelegate {
         print(error)
     }
 }
-
+//extension HomeViewController: ForecastManagerDelegate {
+//
+//    func didGetToday(_ forecastManager: ForecastManager, forecast: ForecastModel) {
+//        DispatchQueue.main.async {
+//            todayForecast = forecast
+//
+//        }
+//    }
+//
+//    func didGetWeek(_ forecastManager: ForecastManager, forecast: ForecastModel) {
+//        DispatchQueue.main.async {
+//            todayForecast = forecast
+//}
 //MARK: - CLLocationManagerDelegate
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -157,6 +171,7 @@ extension HomeViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             weatherManager.fetchWeather(latitude: lat, longitude: lon)
+            forecastManager.fetchWeatherForForecast(latitude: lat, longitude: lon)
         }
     }
     
@@ -166,17 +181,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 }
 //MARK: - HomeViewController Forecast Tableview
 
-extension HomeViewController: UITableViewDelegate, UITableViewDataSource, ForecastManagerDelegate {
-    func didUpdateForecast(_ forecastManager: ForecastManager, forecast: ForecastModel) {
-        DispatchQueue.main.async {
-//            self.forecastTableView.indexPath(for: ForecastCell)
-       //     self.temperatureLabel.text = forecast.currentTemp
-//        self.conditionLabel.text = weather.weatherDiscription
-//        self.cityLabel.text = weather.cityName
-//        self.highLowLabel.text = "H: \(weather.highTemperature) | L: \(weather.lowTemperature)"
-            }
-        }
-    
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 12
@@ -196,23 +201,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Foreca
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = ""
+            cell.forecastTemp.text = "84°"
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"
-            cell.forecastTemp.text = "84*"
+            cell.forecastTemp.text = "84°"
         }
         else if indexPath.row == 3 {
             cell.forecastTime.text = "\(hours(hour: time + 3))"
-            cell.forecastTemp.text = "86*"
+            cell.forecastTemp.text = "86°"
         }
         else if indexPath.row == 4 {
             cell.forecastTime.text = "\(hours(hour: time + 4))"
-            cell.forecastTemp.text = "86*"
+            cell.forecastTemp.text = "86°"
         }
         else if indexPath.row == 5 {
             cell.forecastTime.text = "\(hours(hour: time + 5))"
-            cell.forecastTemp.text = "84*"
+            cell.forecastTemp.text = "84°"
         }
         else if indexPath.row == 6 {
             let boldText = "Filter:"
@@ -224,23 +229,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource, Foreca
         }
         else if indexPath.row == 7 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 1))"
-            cell.forecastTemp.text = "H: 87 | L: 75"
+            cell.forecastTemp.text = "H: 87° | L: 75°"
         }
         else if indexPath.row == 8 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 2))"
-            cell.forecastTemp.text = "H: 89 | L: 77"
+            cell.forecastTemp.text = "H: 89° | L: 77°"
         }
         else if indexPath.row == 9 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 3))"
-            cell.forecastTemp.text = "H: 91 | L: 79"
+            cell.forecastTemp.text = "H: 91° | L: 79°"
         }
         else if indexPath.row == 10 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 4))"
-            cell.forecastTemp.text = "H: 89 | L: 77"
+            cell.forecastTemp.text = "H: 89° | L: 77°"
         }
         else if indexPath.row == 11 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 5))"
-            cell.forecastTemp.text = "H: 86 | L: 74"
+            cell.forecastTemp.text = "H: 86° | L: 74°"
         }
         else {
             print("oops")

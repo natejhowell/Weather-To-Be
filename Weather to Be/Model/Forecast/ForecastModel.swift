@@ -7,11 +7,25 @@
 
 import Foundation
 
-struct ForecastModel {
-    let currentTime: Int
-    let currentTemp: Double
+struct ForecastModelToday {
+    var time: Int
+    var temperature: Double
     
     var temperatureString: String {
-        return String(format: "%.1f", currentTemp)
+        return String(format: "%.1f", temperature)
+    }
+}
+
+struct ForecastModelWeek {
+    var time: Int
+    var highTemp: Double
+    var lowTemp: Double
+    
+    var highTemperatureString: String {
+        return String(format: "%.1f", highTemp)
+    }
+        
+    var lowTemperatureString: String {
+        return String(format: "%.1f", lowTemp)
     }
 }

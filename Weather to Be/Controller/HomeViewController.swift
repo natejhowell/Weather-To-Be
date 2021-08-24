@@ -23,7 +23,8 @@ class HomeViewController: UIViewController {
     var forecastManager = ForecastManager()
     let locationManager = CLLocationManager()
     
-//    var todayForecast = ForecastModel(currentTime: <#T##Int#>, currentTemp: <#T##Double#>)
+    var todayForecast = ForecastModelToday(time: 0, temperature: 0.0)
+    var weekForecast = ForecastModelWeek(time: 0, highTemp: 0.0, lowTemp: 0.0)
   
     func weekDay(day: Int) -> String {
         switch day {
@@ -147,19 +148,24 @@ extension HomeViewController: WeatherManagerDelegate {
         print(error)
     }
 }
-//extension HomeViewController: ForecastManagerDelegate {
-//
-//    func didGetToday(_ forecastManager: ForecastManager, forecast: ForecastModel) {
-//        DispatchQueue.main.async {
-//            todayForecast = forecast
-//
-//        }
-//    }
-//
-//    func didGetWeek(_ forecastManager: ForecastManager, forecast: ForecastModel) {
-//        DispatchQueue.main.async {
-//            todayForecast = forecast
-//}
+extension HomeViewController: ForecastManagerDelegate {
+
+    func didGetToday(_ forecastManager: ForecastManager, forecast: ForecastModelToday) {
+        DispatchQueue.main.async {
+            self.todayForecast.time = forecast.time
+            self.todayForecast.temperature = forecast.temperature
+        }
+    }
+
+    func didGetWeek(_ forecastManager: ForecastManager, forecast: ForecastModelWeek) {
+        DispatchQueue.main.async {
+            self.weekForecast.time = forecast.time
+            self.weekForecast.highTemp = forecast.highTemp
+            self.weekForecast.lowTemp = forecast.lowTemp
+        }
+        
+    }
+}
 //MARK: - CLLocationManagerDelegate
 
 extension HomeViewController: CLLocationManagerDelegate {
@@ -201,7 +207,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = "84°"
+            cell.forecastTemp.text = todayForecast.temperatureString
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"

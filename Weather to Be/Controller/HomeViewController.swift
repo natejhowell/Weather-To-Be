@@ -20,7 +20,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var forecastTableView: UITableView!
     
     var weatherManager = WeatherManager()
-    var forecastManager = ForecastManager()
+    var todayForecastManager = TodayForecastManager()
+    var weekForecastManager = WeekForecastManager()
     let locationManager = CLLocationManager()
     
     var todayForecast = ForecastModelToday(time: 0, temperature: 0.0)
@@ -116,7 +117,8 @@ class HomeViewController: UIViewController {
         forecastTableView.register(UINib(nibName: "ForecastCell", bundle: nil), forCellReuseIdentifier: "ReusableCell")
         
         weatherManager.delegate = self
-        //forecastManager.delegate = self
+        todayForecastManager.delegate = self
+        weekForecastManager.delegate = self
         
         // Set greeting based on time of day
         let hour = Calendar.current.component(.hour, from: Date())
@@ -148,20 +150,25 @@ extension HomeViewController: WeatherManagerDelegate {
         print(error)
     }
 }
-extension HomeViewController: ForecastManagerDelegate {
 
-    func didGetToday(_ forecastManager: ForecastManager, forecast: ForecastModelToday) {
+extension HomeViewController: TodayForecastManagerDelegate {
+
+    func didGetToday(_ forecastManager: TodayForecastManager, todaysForecast: ForecastModelToday) {
         DispatchQueue.main.async {
-            self.todayForecast.time = forecast.time
-            self.todayForecast.temperature = forecast.temperature
+            self.todayForecast = todaysForecast
+            self.todayForecast.temperature = todaysForecast.temperature
         }
     }
+}
 
-    func didGetWeek(_ forecastManager: ForecastManager, forecast: ForecastModelWeek) {
+extension HomeViewController: WeekForecastManagerDelegate {
+
+    func didGetWeek(_ forecastManager: WeekForecastManager, weeksForecast: ForecastModelWeek) {
+        print("show me the money")
         DispatchQueue.main.async {
-            self.weekForecast.time = forecast.time
-            self.weekForecast.highTemp = forecast.highTemp
-            self.weekForecast.lowTemp = forecast.lowTemp
+            self.weekForecast = weeksForecast
+            self.weekForecast.highTemp = weeksForecast.highTemp
+            self.weekForecast.lowTemp = weeksForecast.lowTemp
         }
         
     }
@@ -177,7 +184,8 @@ extension HomeViewController: CLLocationManagerDelegate {
             let lat = location.coordinate.latitude
             let lon = location.coordinate.longitude
             weatherManager.fetchWeather(latitude: lat, longitude: lon)
-            forecastManager.fetchWeatherForForecast(latitude: lat, longitude: lon)
+            todayForecastManager.fetchWeatherForTodayForecast(latitude: lat, longitude: lon)
+            weekForecastManager.fetchWeatherForWeekForecast(latitude: lat, longitude: lon)
         }
     }
     
@@ -207,7 +215,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = todayForecast.temperatureString
+            cell.forecastTemp.text = "\(todayForecast.temperatureString)°"
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"
@@ -235,7 +243,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 7 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 1))"
-            cell.forecastTemp.text = "H: 87° | L: 75°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureString)° | L: \(weekForecast.lowTemperatureString)°"
         }
         else if indexPath.row == 8 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 2))"

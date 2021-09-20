@@ -17,7 +17,7 @@ struct WeatherManager {
     
     var delegate: WeatherManagerDelegate?
     func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-        let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally (2 of 2), enter your own API key here or reach out to project owner
+        let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally, enter your own API key here or reach out to project owner
         let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
         let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
         performRequest(with: urlString)

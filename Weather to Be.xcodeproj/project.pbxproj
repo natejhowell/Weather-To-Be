@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A778D1E726CC6FB8007F8A75 /* ForecastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778D1E526CC6FB8007F8A75 /* ForecastCell.swift */; };
+		A778D1E826CC6FB8007F8A75 /* ForecastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A778D1E626CC6FB8007F8A75 /* ForecastCell.xib */; };
+		A778D1EA26CC7995007F8A75 /* ForecastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778D1E926CC7995007F8A75 /* ForecastModel.swift */; };
+		A778D1EC26D0608D007F8A75 /* TodayForecastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778D1EB26D0608D007F8A75 /* TodayForecastManager.swift */; };
+		A778D1EF26D06125007F8A75 /* ForecastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778D1EE26D06125007F8A75 /* ForecastData.swift */; };
+		A778D1F326D9864B007F8A75 /* WeekForecastManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A778D1F226D9864B007F8A75 /* WeekForecastManager.swift */; };
 		A7C4CDAB26C325780026414E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C4CDAA26C325780026414E /* AppDelegate.swift */; };
 		A7C4CDAD26C325780026414E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C4CDAC26C325780026414E /* SceneDelegate.swift */; };
 		A7C4CDAF26C325780026414E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C4CDAE26C325780026414E /* ViewController.swift */; };
@@ -23,6 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A778D1E526CC6FB8007F8A75 /* ForecastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastCell.swift; sourceTree = "<group>"; };
+		A778D1E626CC6FB8007F8A75 /* ForecastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastCell.xib; sourceTree = "<group>"; };
+		A778D1E926CC7995007F8A75 /* ForecastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastModel.swift; sourceTree = "<group>"; };
+		A778D1EB26D0608D007F8A75 /* TodayForecastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayForecastManager.swift; sourceTree = "<group>"; };
+		A778D1EE26D06125007F8A75 /* ForecastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastData.swift; sourceTree = "<group>"; };
+		A778D1F226D9864B007F8A75 /* WeekForecastManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekForecastManager.swift; sourceTree = "<group>"; };
 		A7C4CDA726C325780026414E /* Weather to Be.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather to Be.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7C4CDAA26C325780026414E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A7C4CDAC26C325780026414E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +63,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A778D1F026D06148007F8A75 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				A7C4CDD226C351930026414E /* WeatherManager.swift */,
+				A7C4CDD626C351D00026414E /* WeatherModel.swift */,
+				A7C4CDD426C351B50026414E /* WeatherData.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		A778D1F126D0615F007F8A75 /* Forecast */ = {
+			isa = PBXGroup;
+			children = (
+				A778D1EB26D0608D007F8A75 /* TodayForecastManager.swift */,
+				A778D1F226D9864B007F8A75 /* WeekForecastManager.swift */,
+				A778D1E926CC7995007F8A75 /* ForecastModel.swift */,
+				A778D1EE26D06125007F8A75 /* ForecastData.swift */,
+			);
+			path = Forecast;
+			sourceTree = "<group>";
+		};
 		A7C4CD9E26C325780026414E = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				A7C4CDB026C325780026414E /* Main.storyboard */,
+				A778D1E526CC6FB8007F8A75 /* ForecastCell.swift */,
+				A778D1E626CC6FB8007F8A75 /* ForecastCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -105,9 +140,8 @@
 		A7C4CDD126C3495D0026414E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A7C4CDD226C351930026414E /* WeatherManager.swift */,
-				A7C4CDD626C351D00026414E /* WeatherModel.swift */,
-				A7C4CDD426C351B50026414E /* WeatherData.swift */,
+				A778D1F026D06148007F8A75 /* Weather */,
+				A778D1F126D0615F007F8A75 /* Forecast */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A778D1E826CC6FB8007F8A75 /* ForecastCell.xib in Resources */,
 				A7C4CDBA26C3257A0026414E /* LaunchScreen.storyboard in Resources */,
 				A7C4CDB726C3257A0026414E /* Assets.xcassets in Resources */,
 				A7C4CDB226C325780026414E /* Main.storyboard in Resources */,
@@ -184,12 +219,17 @@
 			files = (
 				A7C4CDCA26C3435F0026414E /* SearchViewController.swift in Sources */,
 				A7C4CDC826C343430026414E /* HomeViewController.swift in Sources */,
+				A778D1EC26D0608D007F8A75 /* TodayForecastManager.swift in Sources */,
+				A778D1E726CC6FB8007F8A75 /* ForecastCell.swift in Sources */,
+				A778D1EF26D06125007F8A75 /* ForecastData.swift in Sources */,
 				A7C4CDD326C351930026414E /* WeatherManager.swift in Sources */,
 				A7C4CDCE26C343ED0026414E /* FavoritesViewController.swift in Sources */,
 				A7C4CDD726C351D00026414E /* WeatherModel.swift in Sources */,
+				A778D1EA26CC7995007F8A75 /* ForecastModel.swift in Sources */,
 				A7C4CDAF26C325780026414E /* ViewController.swift in Sources */,
 				A7C4CDAB26C325780026414E /* AppDelegate.swift in Sources */,
 				A7C4CDB526C325780026414E /* Weather_to_Be.xcdatamodeld in Sources */,
+				A778D1F326D9864B007F8A75 /* WeekForecastManager.swift in Sources */,
 				A7C4CDD526C351B50026414E /* WeatherData.swift in Sources */,
 				A7C4CDAD26C325780026414E /* SceneDelegate.swift in Sources */,
 			);

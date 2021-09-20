@@ -9,29 +9,21 @@ import Foundation
 import CoreLocation
 
 protocol WeatherManagerDelegate {
-    func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherModel)
+    func didGetCurrent(_ weatherManager: WeatherManager, weather: WeatherModel)
     func didFailWithError(error: Error)
 }
 
 struct WeatherManager {
     
     var delegate: WeatherManagerDelegate?
-        func fetchWeather(cityName: String) {
-            let apiKey = "" // The key is left empty intentionally (1 of 2), enter your own API key here or reach out to project owner
-            let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
-            let urlString = "\(weatherURL)&q=\(cityName)"
-            performRequest(with: urlString)
-        }
-    
-        func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-            let apiKey = "" // The key is left empty intentionally (2 of 2), enter your own API key here or reach out to project owner
-            let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
-            let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
-            performRequest(with: urlString)
-        }
+    func fetchWeather(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
+        let apiKey = "b16248af22ebd2db62aaa8f46a1dd421" // The key is left empty intentionally, enter your own API key here or reach out to project owner
+        let weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=imperial&appid=\(apiKey)"
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longitude)"
+        performRequest(with: urlString)
+    }
     
     func performRequest(with urlString: String) {
-        
         if let url = URL(string: urlString){
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, error) in
@@ -42,7 +34,7 @@ struct WeatherManager {
                 
                 if let safeData = data {
                     if let weather = self.parseJSON(safeData) {
-                        self.delegate?.didUpdateWeather(self, weather: weather)
+                        self.delegate?.didGetCurrent(self, weather: weather)
                     }
                 }
             }

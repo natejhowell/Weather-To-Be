@@ -18,6 +18,12 @@ struct WeatherModel {
     var temperatureString: String {
         return String(format: "%.1f", temperature)
     }
+    var highTemperatureString: String {
+        return String(format: "%.1f", highTemperature)
+    }
+    var lowTemperatureString: String {
+        return String(format: "%.1f", lowTemperature)
+    }
     
     var conditionName: String {
         switch conditionId {

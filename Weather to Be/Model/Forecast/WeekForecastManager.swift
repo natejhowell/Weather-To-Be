@@ -47,10 +47,18 @@ struct WeekForecastManager {
             print("DATA: ", forecastData)
             do {
                 let decodedData = try decoder.decode(ForecastData.self, from: forecastData)
-                let time = decodedData.current.dt
-                let highTemperature = decodedData.daily[1].temp.max
-                let lowTemperature = decodedData.daily[1].temp.min
-                let weeksForecast = ForecastModelWeek(time: time, highTemp: highTemperature, lowTemp: lowTemperature)
+                let highTemperatureFirst = decodedData.daily[1].temp.max
+                let lowTemperatureFirst = decodedData.daily[1].temp.min
+                let highTemperatureSecond = decodedData.daily[2].temp.max
+                let lowTemperatureSecond = decodedData.daily[2].temp.min
+                let highTemperatureThird = decodedData.daily[3].temp.max
+                let lowTemperatureThird = decodedData.daily[3].temp.min
+                let highTemperatureFourth = decodedData.daily[4].temp.max
+                let lowTemperatureFourth = decodedData.daily[4].temp.min
+                let highTemperatureFifth = decodedData.daily[5].temp.max
+                let lowTemperatureFifth = decodedData.daily[5].temp.min
+                let weeksForecast = ForecastModelWeek(highTempFirst: highTemperatureFirst, lowTempFirst: lowTemperatureFirst, highTempSecond: highTemperatureSecond, lowTempSecond: lowTemperatureSecond, highTempThird: highTemperatureThird, lowTempThird: lowTemperatureThird, highTempFourth: highTemperatureFourth, lowTempFourth: lowTemperatureFourth, highTempFifth: highTemperatureFifth, lowTempFifth: lowTemperatureFifth)
+                   // (time: time, highTemp: highTemperature, lowTemp: lowTemperature))
                 return weeksForecast
                 
             } catch {

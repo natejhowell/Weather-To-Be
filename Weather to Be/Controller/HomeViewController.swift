@@ -24,8 +24,8 @@ class HomeViewController: UIViewController {
     var weekForecastManager = WeekForecastManager()
     let locationManager = CLLocationManager()
     
-    var todayForecast = ForecastModelToday(time: 0, temperature: 0.0)
-    var weekForecast = ForecastModelWeek(time: 0, highTemp: 0.0, lowTemp: 0.0)
+    var todayForecast = ForecastModelToday(temperatureFirst: 0.0, temperatureSecond: 0.0, temperatureThird: 0.0, temperatureFourth: 0.0, temperatureFifth: 0.0)
+    var weekForecast = ForecastModelWeek(highTempFirst: 0.0, lowTempFirst: 0.0, highTempSecond: 0.0, lowTempSecond: 0.0, highTempThird: 0.0, lowTempThird: 0.0, highTempFourth: 0.0, lowTempFourth: 0.0, highTempFifth: 0.0, lowTempFifth: 0.0)
   
     func weekDay(day: Int) -> String {
         switch day {
@@ -156,7 +156,11 @@ extension HomeViewController: TodayForecastManagerDelegate {
     func didGetToday(_ forecastManager: TodayForecastManager, todaysForecast: ForecastModelToday) {
         DispatchQueue.main.async {
             self.todayForecast = todaysForecast
-            self.todayForecast.temperature = todaysForecast.temperature
+            self.todayForecast.temperatureFirst = todaysForecast.temperatureFirst
+            self.todayForecast.temperatureSecond = todaysForecast.temperatureSecond
+            self.todayForecast.temperatureThird = todaysForecast.temperatureThird
+            self.todayForecast.temperatureFourth = todaysForecast.temperatureFourth
+            self.todayForecast.temperatureFifth = todaysForecast.temperatureFifth
         }
     }
 }
@@ -167,8 +171,16 @@ extension HomeViewController: WeekForecastManagerDelegate {
         print("show me the money")
         DispatchQueue.main.async {
             self.weekForecast = weeksForecast
-            self.weekForecast.highTemp = weeksForecast.highTemp
-            self.weekForecast.lowTemp = weeksForecast.lowTemp
+            self.weekForecast.highTempFirst = weeksForecast.highTempFirst
+            self.weekForecast.lowTempFirst = weeksForecast.lowTempFirst
+            self.weekForecast.highTempSecond = weeksForecast.highTempSecond
+            self.weekForecast.lowTempSecond = weeksForecast.lowTempSecond
+            self.weekForecast.highTempThird = weeksForecast.highTempThird
+            self.weekForecast.lowTempThird = weeksForecast.lowTempThird
+            self.weekForecast.highTempFourth = weeksForecast.highTempFourth
+            self.weekForecast.lowTempFourth = weeksForecast.lowTempFourth
+            self.weekForecast.highTempFifth = weeksForecast.highTempFifth
+            self.weekForecast.lowTempFifth = weeksForecast.lowTempFifth
         }
         
     }
@@ -215,23 +227,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureString)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFirst)°"
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"
-            cell.forecastTemp.text = "84°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringSecond)°"
         }
         else if indexPath.row == 3 {
             cell.forecastTime.text = "\(hours(hour: time + 3))"
-            cell.forecastTemp.text = "86°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringThird)°"
         }
         else if indexPath.row == 4 {
             cell.forecastTime.text = "\(hours(hour: time + 4))"
-            cell.forecastTemp.text = "86°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFourth)°"
         }
         else if indexPath.row == 5 {
             cell.forecastTime.text = "\(hours(hour: time + 5))"
-            cell.forecastTemp.text = "84°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFifth)°"
         }
         else if indexPath.row == 6 {
             let boldText = "Filter:"
@@ -243,23 +255,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 7 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 1))"
-            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureString)° | L: \(weekForecast.lowTemperatureString)°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureStringFirst)° | L: \(weekForecast.lowTemperatureStringFirst)°"
         }
         else if indexPath.row == 8 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 2))"
-            cell.forecastTemp.text = "H: 89° | L: 77°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureStringSecond)° | L: \(weekForecast.lowTemperatureStringSecond)°"
         }
         else if indexPath.row == 9 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 3))"
-            cell.forecastTemp.text = "H: 91° | L: 79°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureStringThird)° | L: \(weekForecast.lowTemperatureStringThird)°"
         }
         else if indexPath.row == 10 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 4))"
-            cell.forecastTemp.text = "H: 89° | L: 77°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureStringFourth)° | L: \(weekForecast.lowTemperatureStringFourth)°"
         }
         else if indexPath.row == 11 {
             cell.forecastTime.text = "\(weekDay(day: weekday + 5))"
-            cell.forecastTemp.text = "H: 86° | L: 74°"
+            cell.forecastTemp.text = "H: \(weekForecast.highTemperatureStringFifth)° | L: \(weekForecast.lowTemperatureStringFifth)°"
         }
         else {
             print("oops")

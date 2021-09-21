@@ -47,9 +47,12 @@ struct TodayForecastManager {
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode(ForecastData.self, from: forecastData)
-                let currentTime = decodedData.current.dt
-                let temp = decodedData.hourly[0].temp
-                let todaysForecast = ForecastModelToday(time: currentTime, temperature: temp)
+                let tempFirst = decodedData.hourly[0].temp
+                let tempSecond = decodedData.hourly[1].temp
+                let tempThird = decodedData.hourly[2].temp
+                let tempFourth = decodedData.hourly[3].temp
+                let tempFifth = decodedData.hourly[4].temp
+                let todaysForecast = ForecastModelToday(temperatureFirst: tempFirst, temperatureSecond: tempSecond, temperatureThird: tempThird, temperatureFourth: tempFourth, temperatureFifth: tempFifth)
                 return todaysForecast
                 
             } catch {

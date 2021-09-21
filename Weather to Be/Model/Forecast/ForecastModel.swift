@@ -8,24 +8,75 @@
 import Foundation
 
 struct ForecastModelToday {
-    var time: Int
-    var temperature: Double
+    var temperatureFirst: Double
+    var temperatureSecond: Double
+    var temperatureThird: Double
+    var temperatureFourth: Double
+    var temperatureFifth: Double
     
-    var temperatureString: String {
-        return String(format: "%.1f", temperature)
+    var temperatureStringFirst: String {
+        return String(format: "%.1f", temperatureFirst)
+    }
+    var temperatureStringSecond: String {
+        return String(format: "%.1f", temperatureSecond)
+    }
+    var temperatureStringThird: String {
+        return String(format: "%.1f", temperatureThird)
+    }
+    var temperatureStringFourth: String {
+        return String(format: "%.1f", temperatureFourth)
+    }
+    var temperatureStringFifth: String {
+        return String(format: "%.1f", temperatureFifth)
     }
 }
 
 struct ForecastModelWeek {
-    var time: Int
-    var highTemp: Double
-    var lowTemp: Double
     
-    var highTemperatureString: String {
-        return String(format: "%.1f", highTemp)
+    var highTempFirst: Double
+    var lowTempFirst: Double
+    var highTempSecond: Double
+    var lowTempSecond: Double
+    var highTempThird: Double
+    var lowTempThird: Double
+    var highTempFourth: Double
+    var lowTempFourth: Double
+    var highTempFifth: Double
+    var lowTempFifth: Double
+    
+    var highTemperatureStringFirst: String {
+        return String(format: "%.1f", highTempFirst)
     }
-        
-    var lowTemperatureString: String {
-        return String(format: "%.1f", lowTemp)
+    var lowTemperatureStringFirst: String {
+        return String(format: "%.1f", lowTempFirst)
     }
+    
+    var highTemperatureStringSecond: String {
+        return String(format: "%.1f", highTempSecond)
+    }
+    var lowTemperatureStringSecond: String {
+        return String(format: "%.1f", lowTempSecond)
+    }
+    
+    var highTemperatureStringThird: String {
+        return String(format: "%.1f", highTempThird)
+    }
+    var lowTemperatureStringThird: String {
+        return String(format: "%.1f", lowTempThird)
+    }
+    
+    var highTemperatureStringFourth: String {
+        return String(format: "%.1f", highTempFourth)
+    }
+    var lowTemperatureStringFourth: String {
+        return String(format: "%.1f", lowTempFourth)
+    }
+    
+    var highTemperatureStringFifth: String {
+        return String(format: "%.1f", highTempFifth)
+    }
+    var lowTemperatureStringFifth: String {
+        return String(format: "%.1f", lowTempFifth)
+    }
+    
 }

@@ -39,7 +39,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" red="0.7155156667" green="0.94237855420000005" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.72156862745098038" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="forecastTemp" destination="xma-Ag-xIf" id="S96-St-hr4"/>
                 <outlet property="forecastTime" destination="3Nc-zG-bNf" id="Dsi-ff-8Vp"/>

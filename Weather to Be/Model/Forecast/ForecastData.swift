@@ -8,17 +8,11 @@
 import Foundation
 
 struct ForecastData: Codable {
-    let current: Current
     let hourly: [Hourly]
     let daily: [Daily]
 }
 
-struct Current: Codable {
-    let dt: Int
-}
-
 struct Hourly: Codable {
-    let dt: Int
     let temp: Double
     let weather: [Weather]
     
@@ -28,7 +22,6 @@ struct Hourly: Codable {
 }
 
 struct Daily: Codable {
-    let dt: Int
     let temp: Temp
     
     struct Temp: Codable {

@@ -8,6 +8,7 @@
 import Foundation
 
 struct ForecastModelToday {
+    let conditionId: Int
     var temperatureFirst: Double
     var temperatureSecond: Double
     var temperatureThird: Double
@@ -29,54 +30,75 @@ struct ForecastModelToday {
     var temperatureStringFifth: String {
         return String(format: "%.1f", temperatureFifth)
     }
+    
+    var conditionName: String {
+        switch conditionId {
+        case 200...232:
+            return "cloud.bolt"
+        case 300...321:
+            return "cloud.drizzle"
+        case 500...531:
+            return "cloud.rain"
+        case 600...622:
+            return "cloud.snow"
+        case 701...781:
+            return "cloud.fog"
+        case 800:
+            return "sun.max"
+        case 801...804:
+            return "cloud.bolt"
+        default:
+            return "cloud"
+        }
+    }
 }
+    struct ForecastModelWeek {
+            var highTempFirst: Double
+            var lowTempFirst: Double
+            var highTempSecond: Double
+            var lowTempSecond: Double
+            var highTempThird: Double
+            var lowTempThird: Double
+            var highTempFourth: Double
+            var lowTempFourth: Double
+            var highTempFifth: Double
+            var lowTempFifth: Double
+            
+            var highTemperatureStringFirst: String {
+                return String(format: "%.1f", highTempFirst)
+            }
+            var lowTemperatureStringFirst: String {
+                return String(format: "%.1f", lowTempFirst)
+            }
+            
+            var highTemperatureStringSecond: String {
+                return String(format: "%.1f", highTempSecond)
+            }
+            var lowTemperatureStringSecond: String {
+                return String(format: "%.1f", lowTempSecond)
+            }
+            
+            var highTemperatureStringThird: String {
+                return String(format: "%.1f", highTempThird)
+            }
+            var lowTemperatureStringThird: String {
+                return String(format: "%.1f", lowTempThird)
+            }
+            
+            var highTemperatureStringFourth: String {
+                return String(format: "%.1f", highTempFourth)
+            }
+            var lowTemperatureStringFourth: String {
+                return String(format: "%.1f", lowTempFourth)
+            }
+            
+            var highTemperatureStringFifth: String {
+                return String(format: "%.1f", highTempFifth)
+            }
+            var lowTemperatureStringFifth: String {
+                return String(format: "%.1f", lowTempFifth)
+            }
+            
+        }
 
-struct ForecastModelWeek {
-    
-    var highTempFirst: Double
-    var lowTempFirst: Double
-    var highTempSecond: Double
-    var lowTempSecond: Double
-    var highTempThird: Double
-    var lowTempThird: Double
-    var highTempFourth: Double
-    var lowTempFourth: Double
-    var highTempFifth: Double
-    var lowTempFifth: Double
-    
-    var highTemperatureStringFirst: String {
-        return String(format: "%.1f", highTempFirst)
-    }
-    var lowTemperatureStringFirst: String {
-        return String(format: "%.1f", lowTempFirst)
-    }
-    
-    var highTemperatureStringSecond: String {
-        return String(format: "%.1f", highTempSecond)
-    }
-    var lowTemperatureStringSecond: String {
-        return String(format: "%.1f", lowTempSecond)
-    }
-    
-    var highTemperatureStringThird: String {
-        return String(format: "%.1f", highTempThird)
-    }
-    var lowTemperatureStringThird: String {
-        return String(format: "%.1f", lowTempThird)
-    }
-    
-    var highTemperatureStringFourth: String {
-        return String(format: "%.1f", highTempFourth)
-    }
-    var lowTemperatureStringFourth: String {
-        return String(format: "%.1f", lowTempFourth)
-    }
-    
-    var highTemperatureStringFifth: String {
-        return String(format: "%.1f", highTempFifth)
-    }
-    var lowTemperatureStringFifth: String {
-        return String(format: "%.1f", lowTempFifth)
-    }
-    
-}
+

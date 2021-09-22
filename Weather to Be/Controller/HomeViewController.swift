@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     var weekForecastManager = WeekForecastManager()
     let locationManager = CLLocationManager()
     
-    var todayForecast = ForecastModelToday(temperatureFirst: 0.0, temperatureSecond: 0.0, temperatureThird: 0.0, temperatureFourth: 0.0, temperatureFifth: 0.0)
+    var todayForecast = ForecastModelToday(conditionId: 0, temperatureFirst: 0.0, temperatureSecond: 0.0, temperatureThird: 0.0, temperatureFourth: 0.0, temperatureFifth: 0.0)
     var weekForecast = ForecastModelWeek(highTempFirst: 0.0, lowTempFirst: 0.0, highTempSecond: 0.0, lowTempSecond: 0.0, highTempThird: 0.0, lowTempThird: 0.0, highTempFourth: 0.0, lowTempFourth: 0.0, highTempFifth: 0.0, lowTempFifth: 0.0)
   
     func weekDay(day: Int) -> String {
@@ -217,9 +217,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableCell") as! ForecastCell
         let weekday = Calendar.current.component(.weekday, from: Date())
         let time = Calendar.current.component(.hour, from: Date())
+        cell.selectionStyle = .none
+        
         if indexPath.row == 0 {
             let boldText = "Filter:"
-            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
+            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]
             let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
             cell.forecastTime.attributedText = attributedString
             cell.forecastTime.text = "Today's Forecast"
@@ -227,27 +229,27 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
         }
         else if indexPath.row == 1 {
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFirst)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFirst)° | \(todayForecast.conditionName)"
         }
         else if indexPath.row == 2 {
             cell.forecastTime.text = "\(hours(hour: time + 2))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringSecond)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringSecond)° | "
         }
         else if indexPath.row == 3 {
             cell.forecastTime.text = "\(hours(hour: time + 3))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringThird)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringThird)° | "
         }
         else if indexPath.row == 4 {
             cell.forecastTime.text = "\(hours(hour: time + 4))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFourth)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFourth)° | "
         }
         else if indexPath.row == 5 {
             cell.forecastTime.text = "\(hours(hour: time + 5))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFifth)°"
+            cell.forecastTemp.text = "\(todayForecast.temperatureStringFifth)° | "
         }
         else if indexPath.row == 6 {
             let boldText = "Filter:"
-            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 15)]
+            let attrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)]
             let attributedString = NSMutableAttributedString(string:boldText, attributes:attrs)
             cell.forecastTime.attributedText = attributedString
             cell.forecastTime.text = "This Week's Forecast"

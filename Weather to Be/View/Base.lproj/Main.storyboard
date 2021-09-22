@@ -13,7 +13,7 @@
             <objects>
                 <viewController title="Home" id="Wpi-XK-NVi" customClass="HomeViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zo7-Ln-e8r">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Good Morning!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tsc-08-OlH">
@@ -40,10 +40,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D4k-3e-GU3">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="D4k-3e-GU3">
                                 <rect key="frame" x="0.0" y="416" width="414" height="397"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="H: 87* | L: 75*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SbP-jz-CSk" userLabel="High Low Label">
                                 <rect key="frame" x="151" y="387" width="107" height="21"/>
@@ -51,22 +51,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-mv-UWE">
-                                <rect key="frame" x="129" y="138" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cou-mv-UWE">
+                                <rect key="frame" x="132" y="152" width="150" height="136"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="94k-8j-Lex"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
+                        <color key="backgroundColor" red="1" green="0.92941176470588238" blue="0.85490196078431369" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SbP-jz-CSk" firstAttribute="centerX" secondItem="zo7-Ln-e8r" secondAttribute="centerX" id="03z-46-jzr"/>
+                            <constraint firstItem="Cou-mv-UWE" firstAttribute="leading" secondItem="94k-8j-Lex" secondAttribute="leading" constant="132" id="1KL-nJ-Oy6"/>
                             <constraint firstItem="RAd-fG-Qyq" firstAttribute="centerX" secondItem="zo7-Ln-e8r" secondAttribute="centerX" id="2zL-Kv-SIR"/>
                             <constraint firstItem="Utm-aX-1TD" firstAttribute="centerX" secondItem="zo7-Ln-e8r" secondAttribute="centerX" id="4nG-WX-Rvj"/>
+                            <constraint firstItem="Cou-mv-UWE" firstAttribute="centerX" secondItem="D4k-3e-GU3" secondAttribute="centerX" id="6QL-aS-euv"/>
+                            <constraint firstItem="D4k-3e-GU3" firstAttribute="bottom" secondItem="94k-8j-Lex" secondAttribute="bottom" id="Apv-1h-dwv"/>
+                            <constraint firstItem="D4k-3e-GU3" firstAttribute="top" secondItem="SbP-jz-CSk" secondAttribute="bottom" constant="8" symbolic="YES" id="Lc1-49-umn"/>
                             <constraint firstItem="Jwe-ud-gwY" firstAttribute="centerX" secondItem="zo7-Ln-e8r" secondAttribute="centerX" id="O35-tb-4lF"/>
+                            <constraint firstItem="Cou-mv-UWE" firstAttribute="top" secondItem="RAd-fG-Qyq" secondAttribute="bottom" constant="22" id="P6t-O5-Jdr"/>
+                            <constraint firstItem="Cou-mv-UWE" firstAttribute="centerX" secondItem="RAd-fG-Qyq" secondAttribute="centerX" id="W9g-Bu-Mfv"/>
+                            <constraint firstItem="D4k-3e-GU3" firstAttribute="leading" secondItem="zo7-Ln-e8r" secondAttribute="leading" id="Wrq-We-d0a"/>
                             <constraint firstItem="Jwe-ud-gwY" firstAttribute="top" secondItem="Utm-aX-1TD" secondAttribute="bottom" constant="8" symbolic="YES" id="XEI-3R-2yL"/>
                             <constraint firstItem="RAd-fG-Qyq" firstAttribute="top" secondItem="Tsc-08-OlH" secondAttribute="bottom" constant="12" id="XRt-P3-fhe"/>
                             <constraint firstItem="Utm-aX-1TD" firstAttribute="top" secondItem="RAd-fG-Qyq" secondAttribute="bottom" constant="144" id="YCC-T5-Pwl"/>
                             <constraint firstItem="Tsc-08-OlH" firstAttribute="centerX" secondItem="zo7-Ln-e8r" secondAttribute="centerX" id="eqn-nv-8yB"/>
+                            <constraint firstItem="Utm-aX-1TD" firstAttribute="top" secondItem="Cou-mv-UWE" secondAttribute="bottom" constant="8" symbolic="YES" id="jvP-l8-dP2"/>
                             <constraint firstItem="SbP-jz-CSk" firstAttribute="top" secondItem="Jwe-ud-gwY" secondAttribute="bottom" constant="8" symbolic="YES" id="tPO-2h-scA"/>
                             <constraint firstItem="Tsc-08-OlH" firstAttribute="top" secondItem="94k-8j-Lex" secondAttribute="top" constant="12" id="v5O-lg-KdS"/>
                         </constraints>
@@ -91,7 +98,7 @@
             <objects>
                 <tableViewController title="Favorites" id="pUF-SO-4OY" customClass="FavoritesViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9Nf-p6-HFK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -124,7 +131,7 @@
             <objects>
                 <tableViewController title="Search" id="LG8-J0-HHR" customClass="SearchViewController" customModule="Weather_to_Be" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="53E-e5-OHq">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="wX9-x8-nNk">
@@ -174,10 +181,11 @@
         <scene sceneID="u3b-mf-jeU">
             <objects>
                 <tabBarController id="bDl-xk-qjG" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3bD-zb-gdC">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="3bD-zb-gdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="1" green="0.14117647058823529" blue="0.25882352941176467" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="Wpi-XK-NVi" kind="relationship" relationship="viewControllers" id="Fjm-EF-M5A"/>
@@ -194,9 +202,6 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

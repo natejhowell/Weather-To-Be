@@ -58,7 +58,6 @@ struct WeekForecastManager {
                 let highTemperatureFifth = decodedData.daily[5].temp.max
                 let lowTemperatureFifth = decodedData.daily[5].temp.min
                 let weeksForecast = ForecastModelWeek(highTempFirst: highTemperatureFirst, lowTempFirst: lowTemperatureFirst, highTempSecond: highTemperatureSecond, lowTempSecond: lowTemperatureSecond, highTempThird: highTemperatureThird, lowTempThird: lowTemperatureThird, highTempFourth: highTemperatureFourth, lowTempFourth: lowTemperatureFourth, highTempFifth: highTemperatureFifth, lowTempFifth: lowTemperatureFifth)
-                   // (time: time, highTemp: highTemperature, lowTemp: lowTemperature))
                 return weeksForecast
                 
             } catch {

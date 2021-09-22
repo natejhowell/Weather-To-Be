@@ -47,13 +47,17 @@ struct TodayForecastManager {
             let decoder = JSONDecoder()
             do {
                 let decodedData = try decoder.decode(ForecastData.self, from: forecastData)
-                let condId = decodedData.hourly[0].weather[0].id
+                let condIdFirst = decodedData.hourly[0].weather[0].id
+                let condIdSecond = decodedData.hourly[1].weather[0].id
+                let condIdThird = decodedData.hourly[2].weather[0].id
+                let condIdFourth = decodedData.hourly[3].weather[0].id
+                let condIdFifth = decodedData.hourly[4].weather[0].id
                 let tempFirst = decodedData.hourly[0].temp
                 let tempSecond = decodedData.hourly[1].temp
                 let tempThird = decodedData.hourly[2].temp
                 let tempFourth = decodedData.hourly[3].temp
                 let tempFifth = decodedData.hourly[4].temp
-                let todaysForecast = ForecastModelToday(conditionId: condId, temperatureFirst: tempFirst, temperatureSecond: tempSecond, temperatureThird: tempThird, temperatureFourth: tempFourth, temperatureFifth: tempFifth)
+                let todaysForecast = ForecastModelToday(conditionIdFirst: condIdFirst, conditionIdSecond: condIdSecond, conditionIdThird: condIdThird, conditionIdFourth: condIdFourth, conditionIdFifth: condIdFifth, temperatureFirst: tempFirst, temperatureSecond: tempSecond, temperatureThird: tempThird, temperatureFourth: tempFourth, temperatureFifth: tempFifth)
                 print(decodedData.hourly[0].weather[0].id)
                 return todaysForecast
                 

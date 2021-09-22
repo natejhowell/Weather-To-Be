@@ -24,7 +24,7 @@ class HomeViewController: UIViewController {
     var weekForecastManager = WeekForecastManager()
     let locationManager = CLLocationManager()
     
-    var todayForecast = ForecastModelToday(conditionId: 0, temperatureFirst: 0.0, temperatureSecond: 0.0, temperatureThird: 0.0, temperatureFourth: 0.0, temperatureFifth: 0.0)
+    var todayForecast = ForecastModelToday(conditionIdFirst: 0, conditionIdSecond: 0, conditionIdThird: 0, conditionIdFourth: 0, conditionIdFifth: 0, temperatureFirst: 0.0, temperatureSecond: 0.0, temperatureThird: 0.0, temperatureFourth: 0.0, temperatureFifth: 0.0)
     var weekForecast = ForecastModelWeek(highTempFirst: 0.0, lowTempFirst: 0.0, highTempSecond: 0.0, lowTempSecond: 0.0, highTempThird: 0.0, lowTempThird: 0.0, highTempFourth: 0.0, lowTempFourth: 0.0, highTempFifth: 0.0, lowTempFifth: 0.0)
   
     func weekDay(day: Int) -> String {
@@ -140,7 +140,7 @@ extension HomeViewController: WeatherManagerDelegate {
         DispatchQueue.main.async {
             self.temperatureLabel.text = "\(weather.temperatureString)°"
             self.conditionImageView.image = UIImage(systemName: weather.conditionName)
-            self.conditionLabel.text = weather.weatherDiscription
+            self.conditionLabel.text = weather.weatherDiscription.capitalized
             self.cityLabel.text = weather.cityName
             self.highLowLabel.text = "H: \(weather.highTemperatureString)° | L: \(weather.lowTemperatureString)°"
         }
@@ -156,6 +156,11 @@ extension HomeViewController: TodayForecastManagerDelegate {
     func didGetToday(_ forecastManager: TodayForecastManager, todaysForecast: ForecastModelToday) {
         DispatchQueue.main.async {
             self.todayForecast = todaysForecast
+            self.todayForecast.conditionIdFirst = todaysForecast.conditionIdFirst
+            self.todayForecast.conditionIdSecond = todaysForecast.conditionIdSecond
+            self.todayForecast.conditionIdThird = todaysForecast.conditionIdThird
+            self.todayForecast.conditionIdFourth = todaysForecast.conditionIdFourth
+            self.todayForecast.conditionIdFifth = todaysForecast.conditionIdFifth
             self.todayForecast.temperatureFirst = todaysForecast.temperatureFirst
             self.todayForecast.temperatureSecond = todaysForecast.temperatureSecond
             self.todayForecast.temperatureThird = todaysForecast.temperatureThird
@@ -228,24 +233,49 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource  {
             cell.forecastTemp.text = ""
         }
         else if indexPath.row == 1 {
+            let fullString = NSMutableAttributedString(string: "\(todayForecast.temperatureStringFirst)° | ")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: todayForecast.conditionNameFirst)
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            fullString.append(imageString)
+            cell.forecastTemp.attributedText = fullString
             cell.forecastTime.text = "\(hours(hour: time + 1))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFirst)° | \(todayForecast.conditionName)"
         }
         else if indexPath.row == 2 {
+            let fullString = NSMutableAttributedString(string: "\(todayForecast.temperatureStringSecond)° | ")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: todayForecast.conditionNameSecond)
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            fullString.append(imageString)
+            cell.forecastTemp.attributedText = fullString
             cell.forecastTime.text = "\(hours(hour: time + 2))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringSecond)° | "
         }
         else if indexPath.row == 3 {
+            let fullString = NSMutableAttributedString(string: "\(todayForecast.temperatureStringThird)° | ")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: todayForecast.conditionNameThird)
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            fullString.append(imageString)
+            cell.forecastTemp.attributedText = fullString
             cell.forecastTime.text = "\(hours(hour: time + 3))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringThird)° | "
         }
         else if indexPath.row == 4 {
+            let fullString = NSMutableAttributedString(string: "\(todayForecast.temperatureStringFourth)° | ")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: todayForecast.conditionNameFourth)
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            fullString.append(imageString)
+            cell.forecastTemp.attributedText = fullString
             cell.forecastTime.text = "\(hours(hour: time + 4))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFourth)° | "
         }
         else if indexPath.row == 5 {
+            let fullString = NSMutableAttributedString(string: "\(todayForecast.temperatureStringFifth)° | ")
+            let imageAttachment = NSTextAttachment()
+            imageAttachment.image = UIImage(systemName: todayForecast.conditionNameFifth)
+            let imageString = NSAttributedString(attachment: imageAttachment)
+            fullString.append(imageString)
+            cell.forecastTemp.attributedText = fullString
             cell.forecastTime.text = "\(hours(hour: time + 5))"
-            cell.forecastTemp.text = "\(todayForecast.temperatureStringFifth)° | "
         }
         else if indexPath.row == 6 {
             let boldText = "Filter:"
